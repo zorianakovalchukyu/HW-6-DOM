@@ -1,0 +1,411 @@
+$color: #fff200;
+$color_off: rgba($color, 0.1);
+$height: 3em;
+$width: $height / 6; //Make sure to use an even number
+
+$height_total: $height + (2 * $width);
+
+html {
+  background: #000000;
+}
+
+#debug {
+  color: $color;
+}
+.date {
+  display: flex;
+  flex-direction: column;
+}
+.month-date {
+  display: flex;
+  flex-direction: row;
+}
+
+.divider {
+  color: $color;
+  font-size: $height * 2;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+
+  /*
+  Tried pulsing the divider on the corresponding time interval but didn't like it.
+  &.sec {
+    animation: pulse .5s ease-out infinite both alternate;
+  }
+  &.min {
+    animation: pulse 30s ease-out infinite both alternate;
+  }
+  */
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.1;
+  }
+}
+
+.digit {
+  margin: 5em $height/2 0 $height/2;
+  position: relative;
+  float: left;
+  width: $height_total + $width * 3;
+  height: $height_total * 2 + $width * 3;
+
+  .unit:nth-child(2n) {
+    transform: rotateZ(90deg);
+    left: $height_total/2;
+  }
+
+  .unit:nth-child(1) {
+    top: $width/2;
+    left: 0;
+  }
+
+  .unit:nth-child(7) {
+    top: $width/2;
+    left: $height_total;
+  }
+
+  .unit:nth-child(3) {
+    top: ($width/2) + $height_total;
+    left: 0;
+  }
+
+  .unit:nth-child(5) {
+    top: ($width/2) + $height_total;
+    left: $height + ($width * 2);
+  }
+
+  .unit:nth-child(2) {
+    top: -$height_total/2 + $width/2;
+  }
+
+  .unit:nth-child(4) {
+    top: ($height_total/2) + ($width/2);
+  }
+
+  .unit:nth-child(6) {
+    top: (3/2 * $height_total) + $width/2;
+  }
+
+  &.zero {
+    .unit:nth-child(4n) {
+      @extend %unit--off;
+    }
+  }
+
+  &.one {
+    .unit:nth-child(1),
+    .unit:nth-child(3),
+    .unit:nth-child(2),
+    .unit:nth-child(4),
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+
+  &.two {
+    .unit:nth-child(4n + 1) {
+      @extend %unit--off;
+    }
+  }
+
+  &.three {
+    .unit:nth-child(1),
+    .unit:nth-child(3) {
+      @extend %unit--off;
+    }
+  }
+
+  &.four {
+    .unit:nth-child(2),
+    .unit:nth-child(3),
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+
+  &.five {
+    .unit:nth-child(4n + 3) {
+      @extend %unit--off;
+    }
+  }
+
+  &.six {
+    .unit:nth-child(7n) {
+      @extend %unit--off;
+    }
+  }
+
+  &.seven {
+    .unit:nth-child(1),
+    .unit:nth-child(3),
+    .unit:nth-child(4),
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+  &.f {
+    .unit:nth-child(5),
+    .unit:nth-child(6),
+    .unit:nth-child(7) {
+      @extend %unit--off;
+    }
+  }
+  &.a {
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+
+  &.n {
+    .unit:nth-child(2) {
+      transform: rotateZ(-50deg);
+      top: 0.2em;
+    }
+    .unit:nth-child(4),
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+  &.u {
+    .unit:nth-child(2),
+    .unit:nth-child(4) {
+      @extend %unit--off;
+    }
+  }
+  &.r {
+    .unit:nth-child(5) {
+      transform: rotateZ(-45deg);
+      top: 3.9em;
+      left: 2.2em;
+      height: 4em;
+    }
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+  &.y {
+    .unit:nth-child(2),
+    .unit:nth-child(3) {
+      @extend %unit--off;
+    }
+  }
+  &.j {
+    .unit:nth-child(1),
+    .unit:nth-child(2),
+    .unit:nth-child(4) {
+      @extend %unit--off;
+    }
+  }
+
+  &.e {
+    .unit:nth-child(5),
+    .unit:nth-child(7) {
+      @extend %unit--off;
+    }
+  }
+
+  &.m {
+    .unit:nth-child(2) {
+      transform: rotateZ(-20deg);
+      top: 0em;
+      left: 1.2em;
+      height: 3.5em;
+    }
+    .unit:nth-child(4) {
+      transform: rotateZ(20deg);
+      top: 0em;
+      left: 2.8em;
+      height: 3.5em;
+    }
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+
+  &.c {
+    .unit:nth-child(5),
+    .unit:nth-child(7),
+    .unit:nth-child(4) {
+      @extend %unit--off;
+    }
+  }
+
+  &.h {
+    .unit:nth-child(2),
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+
+  &.o {
+    .unit:nth-child(4) {
+      @extend %unit--off;
+    }
+  }
+  &.d {
+    .unit:nth-child(4) {
+      @extend %unit--off;
+    }
+  }
+
+  &.l {
+    .unit:nth-child(2),
+    .unit:nth-child(4),
+    .unit:nth-child(5),
+    .unit:nth-child(7) {
+      @extend %unit--off;
+    }
+  }
+
+  &.g {
+    .unit:nth-child(4) {
+      transform: rotateZ(-50deg);
+      top: 5.4em;
+      left: 3.8em;
+      height: 3em;
+    }
+  }
+  &.s {
+    .unit:nth-child(3),
+    .unit:nth-child(7) {
+      @extend %unit--off;
+    }
+  }
+
+  &.p {
+    .unit:nth-child(5),
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+  &.v {
+    .unit:nth-child(1) {
+      transform: rotateZ(-10deg);
+      top: 0em;
+      left: 1em;
+      height: 3em;
+    }
+    .unit:nth-child(7) {
+      transform: rotateZ(10deg);
+      top: 0em;
+      left: 3.5em;
+      height: 3em;
+    }
+    .unit:nth-child(3) {
+      transform: rotateZ(-10deg);
+      top: 4.3em;
+      left: 2.1em;
+      height: 3em;
+    }
+    .unit:nth-child(5) {
+      transform: rotateZ(10deg);
+      top: 4.3em;
+      left: 2.6em;
+      height: 3em;
+    }
+    .unit:nth-child(2),
+    .unit:nth-child(4),
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+  }
+
+  &.t {
+    .unit:nth-child(4) {
+      transform: rotateZ(180deg);
+      top: 0.4em;
+      left: 2em;
+      height: 3em;
+    }
+    .unit:nth-child(6) {
+      transform: rotateZ(180deg);
+      top: 4.4em;
+      left: 2em;
+      height: 3em;
+    }
+    .unit:nth-child(1) {
+      @extend %unit--off;
+    }
+    .unit:nth-child(3) {
+      @extend %unit--off;
+    }
+    .unit:nth-child(5) {
+      @extend %unit--off;
+    }
+    .unit:nth-child(7) {
+      @extend %unit--off;
+    }
+  }
+
+  &.i {
+    .unit:nth-child(2) {
+      @extend %unit--off;
+    }
+    .unit:nth-child(4) {
+      @extend %unit--off;
+    }
+    .unit:nth-child(5) {
+      @extend %unit--off;
+    }
+    .unit:nth-child(6) {
+      @extend %unit--off;
+    }
+    .unit:nth-child(7) {
+      @extend %unit--off;
+    }
+  }
+
+  &.eight,
+  &.b {
+    // No change
+  }
+
+  &.nine {
+    .unit:nth-child(3n) {
+      @extend %unit--off;
+    }
+  }
+}
+
+%unit--off {
+  //display: none;
+  background: $color_off;
+  color: $color_off;
+  box-shadow: none;
+}
+
+.unit {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: $width;
+  height: $height;
+  background: $color;
+  color: $color;
+
+  &::before {
+    @include triangle("n", inherit, $width, $width/2);
+
+    content: "";
+
+    position: absolute;
+    top: -$width/2;
+    left: 0;
+  }
+  &::after {
+    @include triangle("s", inherit, $width, $width/2);
+
+    content: "";
+
+    position: absolute;
+    bottom: -$width/2;
+    left: 0;
+  }
+}
